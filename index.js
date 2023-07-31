@@ -42,7 +42,7 @@ async function createTableIfNotExists() {
 createTableIfNotExists();
 
 app.use(cors({
-  origin: 'https://www.dcutawala.org' // Replace with your frontend's domain or use '*' for any origin
+  origin: '*'// Replace with your frontend's domain or use '*' for any origin
 }));
 app.use(express.json()); // To parse JSON data from requests
 
