@@ -81,6 +81,20 @@ app.post('/register', async (req, res) => {
   }
 });
 
+// Define a route to fetch registered data
+app.get('/register', async (req, res) => {
+  try {
+    const query = 'SELECT * FROM registers';
+    const result = await pool.query(query);
+
+    const registrations = result.rows;
+    res.status(200).json(registrations);
+  } catch (error) {
+    console.error('Error fetching registered data:', error);
+    res.status(500).json({ error: 'Failed to fetch registered data.' });
+  }
+});
+
 // Start the server
 app.listen(port, () => {
   console.log(`Server running on http://localhost:${port}`);
