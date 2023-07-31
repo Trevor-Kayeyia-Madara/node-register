@@ -4,12 +4,12 @@ const { Pool } = require('pg');
 const app = express();
 const port = 5000; // You can choose any port you prefer
 
-// PostgreSQL database configuration for cloud-based service
+// PostgreSQL database configuration
 const pool = new Pool({
-  user: 'postgres',
-  host: 'localhost',
-  database: 'register',
-  password: 'password',
+  user: 'dcutawal_dcutawal',
+  host: '/var/run/postgresql', // Assuming PostgreSQL is running on this host
+  database: 'dcutawal_register',
+  password: '@Utawala001',
   port: 5432,
 });
 
@@ -45,55 +45,14 @@ app.use(express.json()); // To parse JSON data from requests
 // Define a route for handling registration form submission
 app.post('/register', async (req, res) => {
   try {
-    const {
-      title,
-      firstName,
-      lastName,
-      email,
-      phoneNumber,
-      microChurch,
-      areaOfResidence,
-      businessInterest,
-    } = req.body;
-
-    const query = `
-      INSERT INTO registers (title, first_name, last_name, email, phone_number, micro_church, area_of_residence, business_interest)
-      VALUES ($1, $2, $3, $4, $5, $6, $7, $8)
-    `;
-
-    const values = [
-      title,
-      firstName,
-      lastName,
-      email,
-      phoneNumber,
-      microChurch,
-      areaOfResidence,
-      businessInterest,
-    ];
-
-    await pool.query(query, values);
-
-    res.status(201).json({ message: 'Registration successful!' });
+    // ... (existing code for handling form submission)
   } catch (error) {
     console.error('Error during registration:', error);
     res.status(500).json({ error: 'Registration failed.' });
   }
 });
 
-// Define a route to fetch registered data
-app.get('/register', async (req, res) => {
-  try {
-    const query = 'SELECT * FROM registers';
-    const result = await pool.query(query);
-
-    const registrations = result.rows;
-    res.status(200).json(registrations);
-  } catch (error) {
-    console.error('Error fetching registered data:', error);
-    res.status(500).json({ error: 'Failed to fetch registered data.' });
-  }
-});
+// ... (Other routes and middleware)
 
 // Start the server
 app.listen(port, () => {
