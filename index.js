@@ -6,10 +6,10 @@ const port = 5000; // You can choose any port you prefer
 
 // PostgreSQL database configuration
 const pool = new Pool({
-  user: 'dcutawal_dcutawal',
-  host: '/var/run/postgresql', // Assuming PostgreSQL is running on this host
-  database: 'dcutawal_register',
-  password: '@Utawala001',
+  user: 'trevor',
+  host: 'dpg-cj3le9unqql8v0dd1p40-a', // Assuming PostgreSQL is running on this host
+  database: 'register_postgres',
+  password: '3tIxmiUecdCrqlbCLzFzhNZQRHir8EDE',
   port: 5432,
 });
 
