@@ -43,6 +43,7 @@ app.post('/register', async (req, res) => {
       micro_church,
       area_of_residence,
       business_interest,
+      years_in_business,
     } = req.body;
 
     // Use Supabase's insert method to insert data into the 'registers' table
@@ -57,6 +58,7 @@ app.post('/register', async (req, res) => {
         micro_church,
         area_of_residence,
         business_interest,
+        years_in_business,
       });
 
     if (error) {
