@@ -1,5 +1,6 @@
 const express = require('express');
 const { Pool } = require('pg');
+const cors = require('cors');
 
 const app = express();
 const port = 5000; // You can choose any port you prefer
@@ -40,19 +41,61 @@ async function createTableIfNotExists() {
 // Call the function to create the table at application startup
 createTableIfNotExists();
 
+app.use(cors({
+  origin: 'https://www.dcutawala.org' // Replace with your frontend's domain or use '*' for any origin
+}));
 app.use(express.json()); // To parse JSON data from requests
 
-// Define a route for handling registration form submission
+// Define a route for handling registration form submission (POST)
 app.post('/register', async (req, res) => {
   try {
-    // ... (existing code for handling form submission)
+    const {
+      title,
+      firstName,
+      lastName,
+      email,
+      phoneNumber,
+      microChurch,
+      areaOfResidence,
+      businessInterest,
+    } = req.body;
+
+    const query = `
+      INSERT INTO registers (title, first_name, last_name, email, phone_number, micro_church, area_of_residence, business_interest)
+      VALUES ($1, $2, $3, $4, $5, $6, $7, $8)
+    `;
+
+    const values = [
+      title,
+      firstName,
+      lastName,
+      email,
+      phoneNumber,
+      microChurch,
+      areaOfResidence,
+      businessInterest,
+    ];
+
+    await pool.query(query, values);
+
+    res.status(201).json({ message: 'Registration successful!' });
   } catch (error) {
     console.error('Error during registration:', error);
     res.status(500).json({ error: 'Registration failed.' });
   }
 });
 
-// ... (Other routes and middleware)
+// Define a route for fetching registration data (GET)
+app.get('/register', async (req, res) => {
+  try {
+    const query = `SELECT * FROM registers`;
+    const result = await pool.query(query);
+    res.status(200).json(result.rows);
+  } catch (error) {
+    console.error('Error fetching registration data:', error);
+    res.status(500).json({ error: 'Failed to fetch registration data.' });
+  }
+});
 
 // Start the server
 app.listen(port, () => {
