@@ -7,7 +7,7 @@ const port = 5000;
 
 // Replace with your Supabase credentials
 const supabaseUrl = 'https://qcmamloppghscunvukxc.supabase.co';
-const supabaseKey = 'YOUR_SUPABASE_KEY'; // Replace with your Supabase key
+const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InFjbWFtbG9wcGdoc2N1bnZ1a3hjIiwicm9sZSI6ImFub24iLCJpYXQiOjE2OTA3OTU0OTYsImV4cCI6MjAwNjM3MTQ5Nn0.ijDUlw8KCYvr-C1_qyuizuqeEUaMamAmfw2BQizmrzk'; // Replace with your Supabase key
 const supabase = createClient(supabaseUrl, supabaseKey);
 
 // Define a function to create the table if it doesn't exist
