@@ -27,7 +27,7 @@ app.use(express.json());
 
 // Use the cors middleware with specific options
 app.use(cors({
-  origin: 'https://www.dcutawala.com', // Replace with your React app's domain or '*' for any origin
+  origin: 'https://dcutawala.org', // Replace with your React app's domain or '*' for any origin
   methods: 'GET,POST',
 }));
 
