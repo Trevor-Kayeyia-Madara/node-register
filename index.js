@@ -7,7 +7,7 @@ const port = 5000; // You can choose any port you prefer
 // PostgreSQL database configuration for cloud-based service
 const pool = new Pool({
   user: 'postgres',
-  host: 'https://twenty-dolls-add.loca.lt',
+  host: 'localhost',
   database: 'register',
   password: 'password',
   port: 5432,
