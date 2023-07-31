@@ -7,11 +7,10 @@ const port = 5000; // You can choose any port you prefer
 
 // MySQL database configuration
 const dbConfig = {
-  user: 'dcutawal',
-  password: '@Utawala001',
-  database: 'dcutawal_enteprenuership',
-  host: 'localhost', // Replace with your MySQL host
-};
+    user: 'dcutawal', // Replace with your MySQL username (dcutawal@localhost)
+    database: 'dcutawal_enteprenuership', // Replace with your MySQL database name
+    socketPath: '/var/run/mysqld/mysqld.sock', // Replace with the path to your UNIX socket
+  };
 
 // Create a MySQL pool
 const pool = mysql.createPool(dbConfig);
