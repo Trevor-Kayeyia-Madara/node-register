@@ -1,13 +1,14 @@
 const express = require('express');
 const { createClient } = require('@supabase/supabase-js');
+const cors = require('cors');
 
 const app = express();
 const port = 5000;
 
 // Replace with your Supabase credentials
-const supabaseUrl = 'https://qcmamloppghscunvukxc.supabase.co'
-const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InFjbWFtbG9wcGdoc2N1bnZ1a3hjIiwicm9sZSI6ImFub24iLCJpYXQiOjE2OTA3OTU0OTYsImV4cCI6MjAwNjM3MTQ5Nn0.ijDUlw8KCYvr-C1_qyuizuqeEUaMamAmfw2BQizmrzk'
-const supabase = createClient(supabaseUrl, supabaseKey)
+const supabaseUrl = 'https://qcmamloppghscunvukxc.supabase.co';
+const supabaseKey = 'YOUR_SUPABASE_KEY'; // Replace with your Supabase key
+const supabase = createClient(supabaseUrl, supabaseKey);
 
 // Define a function to create the table if it doesn't exist
 async function createTableIfNotExists() {
@@ -23,6 +24,12 @@ async function createTableIfNotExists() {
 createTableIfNotExists();
 
 app.use(express.json());
+
+// Use the cors middleware with specific options
+app.use(cors({
+  origin: 'https://your-react-app-domain.com', // Replace with your React app's domain or '*' for any origin
+  methods: 'GET,POST',
+}));
 
 // Define a route for handling registration form submission (POST)
 app.post('/register', async (req, res) => {
