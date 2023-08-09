@@ -39,6 +39,7 @@ app.post('/register', async (req, res) => {
       last_name,
       email,
       telephone_number,
+      department,
       micro_church,
       area_of_residence,
     } = req.body;
@@ -51,6 +52,7 @@ app.post('/register', async (req, res) => {
         last_name,
         email,
         telephone_number,
+        department,
         micro_church,
         area_of_residence,
       });
