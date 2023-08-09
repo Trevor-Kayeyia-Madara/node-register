@@ -35,30 +35,24 @@ app.use(cors({
 app.post('/register', async (req, res) => {
   try {
     const {
-      title,
       first_name,
       last_name,
       email,
       telephone_number,
       micro_church,
       area_of_residence,
-      business_interest,
-      years_in_business,
     } = req.body;
 
     // Use Supabase's insert method to insert data into the 'registers' table
     const { data, error } = await supabase
-      .from('registers')
+      .from('register')
       .insert({
-        title,
         first_name,
         last_name,
         email,
         telephone_number,
         micro_church,
         area_of_residence,
-        business_interest,
-        years_in_business,
       });
 
     if (error) {
