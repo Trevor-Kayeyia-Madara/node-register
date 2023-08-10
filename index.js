@@ -73,7 +73,7 @@ app.post('/register', async (req, res) => {
 app.get('/register', async (req, res) => {
   try {
     // Use Supabase's select method to fetch data from the 'registers' table
-    const { data, error } = await supabase.from('registers').select('*');
+    const { data, error } = await supabase.from('register').select('*');
 
     if (error) {
       console.error('Error fetching registration data:', error);
